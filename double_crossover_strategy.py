@@ -15,6 +15,7 @@ from utils import *
 plt.style.use("classic")
 figsize = (14, 6)
 
+
 class DoubleCrossoverStrategy:
     def __init__(self,
                  stock: str,
