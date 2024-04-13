@@ -26,3 +26,19 @@ def compute_sma_df(stock: str,
 
 def compute_returns(df: pd.DataFrame | pd.Series) -> pd.DataFrame | pd.Series:
     return (df - df.shift(1)) / df.shift(1)
+
+
+def compute_yearly_compounded_returns(series: pd.Series, prices: bool) -> float:
+    years = (series.index[-1] - series.index[0]).days / 365
+
+    if prices:
+        total_return = (series.iloc[-1] - series.iloc[0]) / series.iloc[0]
+    else:
+        total_return = (series + 1).prod() - 1
+
+    return (1 + total_return)**(1 / years) - 1
+
+
+
+
+
