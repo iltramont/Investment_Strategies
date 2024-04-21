@@ -36,9 +36,11 @@ def compute_yearly_compounded_returns(series: pd.Series, prices: bool) -> float:
     else:
         total_return = (series + 1).prod() - 1
 
-    return (1 + total_return)**(1 / years) - 1
+    return (1 + total_return) ** (1 / years) - 1
 
 
-
-
-
+def get_ew_number_of_shares_to_buy(date: str | pd.Timestamp,
+                                   tickers: list[str],
+                                   capital: float,
+                                   tickers_data: pd.DataFrame):
+    return ((capital / float(len(tickers))) / tickers_data['Close'][tickers].loc[date:].iloc[0]) // 1
