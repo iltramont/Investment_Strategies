@@ -44,3 +44,11 @@ def get_ew_number_of_shares_to_buy(date: str | pd.Timestamp,
                                    capital: float,
                                    tickers_data: pd.DataFrame):
     return ((capital / float(len(tickers))) / tickers_data['Close'][tickers].loc[date:].iloc[0]) // 1
+
+
+def get_weighted_number_of_shares_to_buy(prices: pd.Series, weights: pd.Series, available_cash: float) -> pd.Series:
+    return (available_cash * weights / prices) // 1
+
+
+def compute_covariance_matrix(returns: pd.DataFrame) -> pd.DataFrame:
+    return returns.cov()
